@@ -1,0 +1,137 @@
+{
+  "name": "Pricer-Server-v2",
+  "version": "0.1.0",
+  "description": "Koa2 es7 jwt mongoose",
+  "author": "Molly JieWen Wang",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=3.8"
+  },
+  "scripts": {
+    "start": "node dist/bin/www.js",
+    "build": "rimraf dist && cross-env NODE_ENV=production babel src -d dist -s",
+    "dev": "nodemon src/bin/www.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "cover": "npm run test -- --coverage",
+    "lint": "eslint --fix src && prettier --write \"src/**/*.js\"",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "awilix": "^4.0.1",
+    "awilix-koa": "^3.0.0",
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.6",
+    "bristol": "^0.4.0",
+    "fejl": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compress": "^3.0.0",
+    "koa-jwt": "^3.5.1",
+    "koa-respond": "^2.1.0",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.5.1",
+    "palin": "^2.2.0",
+    "xss": "^1.0.6",
+    "yenv": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-source-map-support": "^2.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.2.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.2",
+    "smid": "^0.1.1"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "jest"
+    ],
+    "extends": [
+      "standard",
+      "prettier",
+      "plugin:jest/recommended"
+    ],
+    "env": {
+      "jest/globals": true
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "js": "babel-node"
+    }
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "__tests__",
+      "src/lib/env",
+      "src/bin"
+    ]
+  },
+  "babel": {
+    "sourceMaps": "both",
+    "plugins": [
+      "transform-runtime",
+      "transform-object-rest-spread"
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          "source-map-support"
+        ],
+        "ignore": [
+          "**/__tests__/**"
+        ]
+      }
+    }
+  }
+}

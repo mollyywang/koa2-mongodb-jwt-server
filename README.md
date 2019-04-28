@@ -78,3 +78,27 @@ npm run lint
 ## 5.Testing API 测试接口
 Download the APT testing tools postman.
 <a href="https://www.getpostman.com/products" rel="Postman">![postman](images/postman.png)</a>
+
+- test user/register api
+![postman](images/register.png)
+
+- test user/login api
+![postman](images/login.png)
+
+- test product/create api
+![postman](images/product-create.png)
+
+- test product/getlist api
+  Don't forget to run the `db_init/dbinit-products.js` or create product first.
+  记得运行`db_init/dbinit-products.js`或者先添加一个产品。
+![postman](images/product-getlist.png)
+
+- test star/starlist api
+  Don't forget to run the `db_init/dbinit-stars.js` or add star first.
+  记得先运行`db_init/dbinit-stars.js`或者添加一个产品
+![postman](images/star-starlist.png)
+
+- test star/remove api
+  Don't forget to run the `db_init/dbinit-stars.js` or add star first.
+  记得先运行`db_init/dbinit-stars.js`或者添加一个产品
+![postman](images/star-remove.png)

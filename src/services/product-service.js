@@ -64,7 +64,7 @@ export default class ProductService{
     BadRequest.assert(data.image, 'image is required')
     BadRequest.assert(data.from, 'from is required')
     BadRequest.assert(data.urllink, 'urllink is required')
-    res.data = await productStore.create(pickProps(data))
+    res.data = await this.productStore.create(pickProps(data))
     if(!res.data){
       res.code = 1
       return res

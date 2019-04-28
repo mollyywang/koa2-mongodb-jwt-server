@@ -24,5 +24,5 @@ const api = productService => ({
 export default createController(api)
   .prefix('/public/products')
   .get('/get/:id', 'getProduct')
-  // .post('/create', 'createProduct')
+  .post('/create', 'createProduct')
   .post('/getlist', 'getlist')

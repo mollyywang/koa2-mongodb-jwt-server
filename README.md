@@ -77,4 +77,4 @@ npm run lint
 ```
 ## 5.Testing API 测试接口
 Download the APT testing tools postman.
-<a href="https://www.getpostman.com/products" rel="Postman">![postman]()</a>
+<a href="https://www.getpostman.com/products" rel="Postman">![postman](images/postman.png)</a>

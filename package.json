@@ -1,9 +1,8 @@
 {
   "name": "Pricer-Server-v2",
   "version": "0.1.0",
-  "description": "Koa2 es7 jwt mongoose",
+  "description": "a boilerplate of shopping nodejs server with koa2, jwt, mongodb using es7",
   "author": "Molly JieWen Wang",
-  "license": "MIT",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=3.8"
@@ -54,7 +53,6 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.2.1",
     "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
     "nodemon": "^1.18.9",

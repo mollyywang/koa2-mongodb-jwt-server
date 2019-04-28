@@ -1,3 +1,5 @@
+//This boilerplate uses the [`Awilix`](https://github.com/jeffijoe/awilix) container for managing dependencies - please check out the Awilix documentation
+//for details. The container is configured in `lib/container.js`.
 import { createContainer, Lifetime, InjectionMode, asValue } from 'awilix'
 import { logger } from './logger'
 

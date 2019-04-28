@@ -1,3 +1,4 @@
+//Each file in `/routes` exports a "controller" that `awilix-koa` will use for routing. Please see [`awilix-koa`](https://github.com/jeffijoe/awilix-koa#awesome-usage) docs for more information.
 import { createController } from 'awilix-koa'
 
 // This is our API controller.

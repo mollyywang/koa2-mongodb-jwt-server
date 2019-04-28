@@ -1,5 +1,4 @@
-# A boilerplate of shopping nodejs server
-# 基于nodejs的购物网站后台脚手架
+# A boilerplate of shopping nodejs server. 基于nodejs的购物网站后台脚手架。
 
 This is not only a `async-await`-based Koa API project,but also a boilerplate of safe shopping nodejs server, with `koa2`, `koa-jwt`, `mongodb` using `es7`. 
 

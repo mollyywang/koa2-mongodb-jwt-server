@@ -1,4 +1,5 @@
-# a boilerplate of shopping nodejs server, 基于nodejs的购物网站后台脚手架
+# A boilerplate of shopping nodejs server
+# 基于nodejs的购物网站后台脚手架
 
 This is not only a `async-await`-based Koa API project,but also a boilerplate of safe shopping nodejs server, with `koa2`, `koa-jwt`, `mongodb` using `es7`. 
 
@@ -76,29 +77,29 @@ npm run test
 npm run lint
 ```
 ## 5.Testing API 测试接口
-Download the APT testing tools postman.
+Download the APT testing tools postman first.
 <a href="https://www.getpostman.com/products" rel="Postman">![postman](images/postman.png)</a>
 
-- test user/register api
+### test user/register api
 ![postman](images/register.png)
 
-- test user/login api
+### test user/login api
 ![postman](images/login.png)
 
-- test product/create api
+### test product/create api
 ![postman](images/product-create.png)
 
-- test product/getlist api
+### test product/getlist api
   Don't forget to run the `db_init/dbinit-products.js` or create product first.
   记得运行`db_init/dbinit-products.js`或者先添加一个产品。
 ![postman](images/product-getlist.png)
 
-- test star/starlist api
+### test star/starlist api
   Don't forget to run the `db_init/dbinit-stars.js` or add star first.
   记得先运行`db_init/dbinit-stars.js`或者添加一个产品
 ![postman](images/star-starlist.png)
 
-- test star/remove api
+### test star/remove api
   Don't forget to run the `db_init/dbinit-stars.js` or add star first.
   记得先运行`db_init/dbinit-stars.js`或者添加一个产品
 ![postman](images/star-remove.png)

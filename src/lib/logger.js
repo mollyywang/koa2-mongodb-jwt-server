@@ -2,11 +2,15 @@ import { Bristol } from 'bristol'
 import palin from 'palin'
 import { env } from './env'
 
+/** 
+ * logger config  配置日志
+ */
+
 export const logger = new Bristol()
 
-/* istanbul ignore next */
 if (env.LOG_LEVEL !== 'off') {
   logger.addTarget('console').withFormatter(palin, {
-    rootFolderName: 'Pricer-Server-v2' // Edit this to match your actual foldername
+    // Edit this as your folder name 这里改成自己的文件夹名
+    rootFolderName: 'Pricer-Server-v2'
   })
 }

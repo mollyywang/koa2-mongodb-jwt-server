@@ -1,21 +1,19 @@
-import {
-  // NotFound,
-  BadRequest
-} from 'fejl'
-import {
-  pick
-} from 'lodash'
+import { NotFound, BadRequest } from 'fejl'
+import { pick } from 'lodash'
 import xss from 'xss'
 import bcrypt from 'bcrypt';
 
 
-// Prevent overposting.
 const pickProps = (data) => {
   data.username = xss(data.username)
   data.password = xss(data.password)
   return pick(data, ['username', 'password'])
 }
 
+/**
+ * User Service.
+ * Gets a user store injected.
+ */
 
 export default class UserService {
   constructor(userStore, logger) {
@@ -26,10 +24,11 @@ export default class UserService {
   async register(body) {
     BadRequest.assert(body.username, 'No username given')
     BadRequest.assert(body.password, 'No password given')
+    body = pickProps(body)
     const password = await bcrypt.hash(body.password, 5)
     const user = await this.userStore.get(body.username)
     if (user.length == 0) {
-      return this.userStore.register(xss(body.username), password)
+      return this.userStore.register(body.username, password)
     } else {
       return {
         data: {
@@ -44,7 +43,7 @@ export default class UserService {
   async login(body) {
     BadRequest.assert(body.username, 'No username given')
     BadRequest.assert(body.password, 'No password given')
-    // const username = 
+    body = pickProps(body)
     const user = await this.userStore.get(body.username)
     if (user.length == 0) {
       return {
@@ -66,13 +65,7 @@ export default class UserService {
   }
 
   async logout(body) {
-    // BadRequest.assert(data, 'No product payload given')
-    // BadRequest.assert(data.name, 'name is required')
-    // BadRequest.assert(data.price, 'price is required')
-    // BadRequest.assert(data.image, 'image is required')
-    // BadRequest.assert(data.from, 'from is required')
-    // BadRequest.assert(data.urllink, 'urllink is required')
-    // return this.productStore.create(pickProps(data))
+
   }
 
 }

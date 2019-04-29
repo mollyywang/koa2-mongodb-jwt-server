@@ -1,44 +1,29 @@
-//This boilerplate uses the [`Awilix`](https://github.com/jeffijoe/awilix) container for managing dependencies - please check out the Awilix documentation
-//for details. The container is configured in `lib/container.js`.
 import { createContainer, Lifetime, InjectionMode, asValue } from 'awilix'
 import { logger } from './logger'
 
 /**
- * Using Awilix, the following files and folders (glob patterns)
- * will be loaded.
- */
-const modulesToLoad = [
-  // Services should be scoped to the request.
-  // This means that each request gets a separate instance
-  // of a service.
-  ['services/*.js', Lifetime.SCOPED],
-  // Stores will be singleton (1 instance per process).
-  // This is just for demo purposes, you can do whatever you want.
-  ['stores/*.js', Lifetime.SINGLETON]
-]
-
-/**
- * Configures a new container.
+ * Configures a new container 配置容器 
  *
  * @return {Object} The container.
  */
+
+const modulesToLoad = [
+  ['services/*.js', Lifetime.SCOPED],
+  ['stores/*.js', Lifetime.SINGLETON]
+]
+
 export function configureContainer() {
   const opts = {
-    // Classic means Awilix will look at function parameter
-    // names rather than passing a Proxy.
     injectionMode: InjectionMode.CLASSIC
   }
   return createContainer(opts)
+    // load modules and registers 加载，注册模块 e.g. import userService from `services/user-service.js` 
     .loadModules(modulesToLoad, {
-      // `modulesToLoad` paths should be relative
-      // to this file's parent directory.
       cwd: `${__dirname}/..`,
-      // Example: registers `services/todo-service.js` as `todoService`
       formatName: 'camelCase'
     })
     .register({
-      // Our logger is already constructed,
-      // so provide it as-is to anyone who wants it.
+      // construct logger 
       logger: asValue(logger)
     })
 }

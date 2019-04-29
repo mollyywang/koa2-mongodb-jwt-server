@@ -1,17 +1,15 @@
-/**
- * In-memory todos store.
- * For demo purposes, gets the logger injected.
- */
 import Star from '../models/star.js';
 import Mongoose from 'mongoose'
-
 const ObjectId = Mongoose.Types.ObjectId
 
-export default function createStarStore(logger) {
+/**
+ * handle database 操作数据库
+ */
 
+export default function createStarStore(logger) {
   return {
     async findStars(userId) {
-      const data =  await Star.aggregate([{
+      const data = await Star.aggregate([{
         '$match': {
           userId: ObjectId(userId)
         }
@@ -25,8 +23,8 @@ export default function createStarStore(logger) {
         }
       }])
       return {
-        data:data,
-        len:data.length
+        data: data,
+        len: data.length
       }
     },
 
@@ -48,8 +46,5 @@ export default function createStarStore(logger) {
       logger.debug(`Remove star`, result)
       return result.deletedCount
     }
-
-
   }
-
 }

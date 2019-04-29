@@ -1,5 +1,5 @@
 /**
- * Let the user know nothing was found here.
+ * Log sth that was not found. 日志
  */
 export async function notFoundHandler(ctx) {
   const msg = `${ctx.request.method} ${ctx.request.path}`

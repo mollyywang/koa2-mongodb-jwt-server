@@ -1,10 +1,12 @@
-//Each file in `/routes` exports a "controller" that `awilix-koa` will use for routing. Please see [`awilix-koa`](https://github.com/jeffijoe/awilix-koa#awesome-usage) docs for more information.
 import { createController } from 'awilix-koa'
 
-// This is our API controller.
-// All it does is map HTTP calls to service calls.
-// This way our services could be used in any type of app, not
-// just over HTTP.
+/**
+ * more info about [`awilix-koa`] (https://github.com/jeffijoe/awilix-koa#awesome-usage) 
+ * more info about [`awilix-router`] (https://github.com/jeffijoe/awilix-router-core)
+ * exports a "controller" that `awilix-koa` use for routing. 
+ * 返回路由控制器供`awilix-koa` 使用路由
+ */
+
 const api = productService => ({
   getProduct: async ctx => ctx.ok(await productService.get(ctx.params.id)),
   getlist: async ctx => {
@@ -18,9 +20,7 @@ const api = productService => ({
     ctx.noContent(await productService.remove(ctx.params.id))
 })
 
-// Maps routes to method calls on the `api` controller.
-// See the `awilix-router-core` docs for info:
-// https://github.com/jeffijoe/awilix-router-core
+
 export default createController(api)
   .prefix('/public/products')
   .get('/get/:id', 'getProduct')

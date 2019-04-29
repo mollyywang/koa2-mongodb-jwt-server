@@ -1,9 +1,9 @@
 import { asValue } from 'awilix'
 
 /**
- * Register Context helps to add request-specific data to the scope.
- * Imagine some auth middleware somewhere...??
+ * add request-specific data to the scope 登录后记录用户名
  */
+
 export async function registerContext(ctx, next) {
   ctx.state.container.register({
     userContext: asValue({

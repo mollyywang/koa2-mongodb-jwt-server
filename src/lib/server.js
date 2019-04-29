@@ -4,66 +4,62 @@ import cors from 'koa2-cors'
 import respond from 'koa-respond'
 import bodyParser from 'koa-bodyparser'
 import compress from 'koa-compress'
+import jwt from 'koa-jwt'
 import { scopePerRequest, loadControllers } from 'awilix-koa'
 
 import { logger } from './logger'
 import { configureContainer } from './container'
 import { dbconnect } from './db'
-// import { notFoundHandler } from '../middleware/not-found'
+import { env } from './env'
+
 import { errorHandler } from '../middleware/error-handler'
 import { registerContext } from '../middleware/register-context'
 
-import { env } from './env'
-import jwt from 'koa-jwt'
-
-
 /**
- * Creates and returns a new Koa application.
- * Does *NOT* call `listen`!
- *
- * @return {Promise<http.Server>} The configured app.
- */
+ * Creates a new Koa application 创建应用并返回
+ * @return {Promise<http.Server>} 
+*/
+
 export async function createServer() {
   logger.debug('Creating server...')
   const app = new Koa()
-
-  // Container is configured with our services and whatnot.
   const container = (app.container = configureContainer())
+  app.keys = ['Molly']
 
-app.use(cors({
-  origin: function(ctx) {
-    if (ctx.url === '/test') {
-      return false;
-    }
-    return '*';
-  },
-  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-  maxAge: 5,
-  credentials: true,
-  allowMethods: ['GET', 'POST'],
-  allowHeaders: ['Content-Type', 'Authorization', 'Accept']
-}));
+  // use cors to enable cross-domain 允许跨域
+  app.use(cors({
+    origin: function (ctx) {
+      if (ctx.url === '/test') {
+        return false;
+      }
+      return '*';
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept']
+  }));
 
-app.keys = ['Molly']
-
-// Custom 401 handling
-app.use(async function (ctx, next) {
-  return next().catch((err) => {
-    if (err.status === 401) {
-      ctx.status = 401;
-      let errMessage = err.originalError ?
-        err.originalError.message :
-        err.message
-      ctx.body = {
-        error: errMessage
-      };
-      ctx.set("X-Status-Reason", errMessage)
-    } else {
-      throw err;
-    }
+  // Custom 401 handling 处理401错误
+  app.use(async function (ctx, next) {
+    return next().catch((err) => {
+      if (err.status === 401) {
+        ctx.status = 401;
+        let errMessage = err.originalError ?
+          err.originalError.message :
+          err.message
+        ctx.body = {
+          error: errMessage
+        };
+        ctx.set("X-Status-Reason", errMessage)
+      } else {
+        throw err;
+      }
+    });
   });
-});
 
+  //use jwt to secret 使用jwt加密
   app.use(jwt({
     secret: env.SECRET
   }).unless({
@@ -84,23 +80,19 @@ app.use(async function (ctx, next) {
     .use(scopePerRequest(container))
     // Create a middleware to add request-specific data to the scope.
     .use(registerContext)
-    // Load routes (API "controllers")
+    // load routes 
     .use(loadControllers('../routes/*.js', { cwd: __dirname }))
 
-  //开启数据库
+  //open database 开启数据库
   dbconnect()
 
-  // Creates a http server ready to listen.
+  // Create http server 开启服务
   const server = http.createServer(app.callback())
-
-  // Add a `close` event listener so we can clean up resources.
+  // Add a `close` event listener 监听应用关闭
   server.on('close', () => {
-    // You should tear down database connections, TCP connections, etc
-    // here to make sure Jest's watch-mode some process management
-    // tool does not release resources.
+    // tear down database connections, etc.
     logger.debug('Server closing, bye!')
   })
-
   logger.debug('Server created, ready to listen', { scope: 'startup' })
   return server
 }

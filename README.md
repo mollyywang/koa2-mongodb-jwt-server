@@ -36,7 +36,7 @@ run `npm install` to install the dependencies
 ```bash
 npm install
 ```
-##3. Directory structurem. 目录架构。
+## 3. Directory structurem. 目录架构。
 
 - `db_init` Init database. 数据库初始化文件。
 - `node_modules` Dependency package. 依赖包。

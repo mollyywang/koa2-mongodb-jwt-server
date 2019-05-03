@@ -102,3 +102,8 @@ Download the APT testing tools postman first.
   Don't forget to run the `db_init/dbinit-stars.js` or add star first.
   记得先运行`db_init/dbinit-stars.js`或者添加一个产品
 ![postman](images/star-remove.png)
+
+## 6.Run with app. 与应用对接
+There is a shopping web application developped with reactjs, redux-thunk, axios and antd. You can download it and run with this server.
+这里还有一个使用reactjs,redux-thunk,axios 和 antd 等的单页网页应用，可以下载下来测试后台。
+https://github.com/SoloistWang/reactjs-redux-antd

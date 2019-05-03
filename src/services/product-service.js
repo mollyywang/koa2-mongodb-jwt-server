@@ -23,7 +23,7 @@ export default class ProductService {
     this.logger = logger
   }
 
-  async getlists(body) {
+  async getlists(body,isLogin) {
     this.logger.debug(body);
     const res = {
       data: {}

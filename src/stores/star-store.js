@@ -22,8 +22,12 @@ export default function createStarStore(logger) {
           as: 'list'
         }
       }])
+      const starsData = data.map((items)=>{
+        return items.list[0]
+      });
+
       return {
-        data: data,
+        starsData: starsData,
         len: data.length
       }
     },

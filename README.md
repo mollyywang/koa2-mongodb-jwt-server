@@ -11,7 +11,7 @@ Clone this repo and adjust details in `package.json`. Remove the `.git` director
 克隆这个仓库，调整适合自己项目的`package.json`，移除`.git`文件并使用`git init`来初始化。
 
 ```bash
-git clone https://github.com/SoloistWang/Pricer-Server-v2.git
+git clone https://github.com/SoloistWang/koa2-mongodb-jwt-server.git
 ```
 ## 2. Config package.json. 包配置。
 - [`bcrypt`] Hash passwords. 加密密码。

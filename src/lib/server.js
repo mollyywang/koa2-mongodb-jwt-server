@@ -13,7 +13,6 @@ import { dbconnect } from './db'
 import { env } from './env'
 
 import { errorHandler } from '../middleware/error-handler'
-import { registerContext } from '../middleware/register-context'
 
 /**
  * Creates a new Koa application 创建应用并返回
@@ -78,8 +77,6 @@ export async function createServer() {
     // Creates an Awilix scope per request. Check out the awilix-koa
     // docs for details: https://github.com/jeffijoe/awilix-koa
     .use(scopePerRequest(container))
-    // Create a middleware to add request-specific data to the scope.
-    .use(registerContext)
     // load routes 
     .use(loadControllers('../routes/*.js', { cwd: __dirname }))
 

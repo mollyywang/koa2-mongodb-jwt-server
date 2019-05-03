@@ -9,15 +9,15 @@ import { createController } from 'awilix-koa'
 
 const api = starService => ({
   findStars: async ctx => {
-    const userId = ctx.state.user.data._id;
+    const userId = ctx.state.user.data._id
     ctx.ok(await starService.findStars(userId))
   },
   addStar: async ctx => {
-    const userId = ctx.state.user.data._id;
+    const userId = ctx.state.user.data._id
     ctx.ok(await starService.addStar(userId, ctx.request.body))
   },
   removeStar: async ctx => {
-    const userId = ctx.state.user.data._id;
+    const userId = ctx.state.user.data._id
     ctx.ok(await starService.removeStar(userId, ctx.params.id))
   }
 })

@@ -26,7 +26,8 @@ export default class ProductService {
   async getlists(body,isLogin) {
     this.logger.debug(body);
     const res = {
-      data: {}
+      data: {},
+      code: 0
     }
     res.data = await this.productStore.getlist(body.name, body.index, body.counts)
     if (!res.data) {

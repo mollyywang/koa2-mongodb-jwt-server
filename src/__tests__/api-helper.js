@@ -22,9 +22,15 @@ export async function apiHelper() {
             client.get(`/public/products/get/${id}`).then(assertStatus(200)),
         getList: data => client.post(`/public/products/getlist`, data).then(assertStatus(200)),
         createProduct: data => client.post('/public/products/create', data).then(assertStatus(200)),
-        findStars: params => client.get(`/star/starlist`, params).then(assertStatus(200)),
-        addStar: data => client.post(`/star/add`, data).then(assertStatus(200)),
-        removeStar: params => client.get(`/star/remove`, params).then(assertStatus(200)),
+        findStars: (params, config) => {
+            return client.get(`/star/starlist`, params, config).then(assertStatus(200))
+        },
+        addStar: (data, config) => {
+            client.post(`/star/add`, data, config).then(assertStatus(200))
+        },
+        removeStar: (params, config) => {
+            client.get(`/star/remove`, params, config).then(assertStatus(200))
+        },
     }
 }
 

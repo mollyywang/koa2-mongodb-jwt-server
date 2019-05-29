@@ -7,6 +7,7 @@ describe('users API', () => {
         username:'wangwang',
         password:'2222'
     })
+    expect(user.code).toEqual(0)
     expect(user.data).toBeDefined()
   })
 
@@ -16,6 +17,7 @@ describe('users API', () => {
         username:'wangwang',
         password:'2222'
     })
+    expect(response.code).toEqual(0)
     expect(response.data.token).toBeDefined()
   })
 

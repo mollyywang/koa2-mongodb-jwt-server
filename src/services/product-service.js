@@ -23,13 +23,13 @@ export default class ProductService {
     this.logger = logger
   }
 
-  async getlists(body,isLogin) {
+  async getList(body) {
     this.logger.debug(body);
     const res = {
       data: {},
       code: 0
     }
-    res.data = await this.productStore.getlist(body.name, body.index, body.counts)
+    res.data = await this.productStore.getList(body.name, body.index, body.counts)
     if (!res.data) {
       res.code = 1
       return res

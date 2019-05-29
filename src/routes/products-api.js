@@ -9,15 +9,12 @@ import { createController } from 'awilix-koa'
 
 const api = productService => ({
   getProduct: async ctx => ctx.ok(await productService.get(ctx.params.id)),
-  getlist: async ctx => {
-    ctx.ok(await productService.getlists(ctx.request.body))
+  getList: async ctx => {
+    ctx.ok(await productService.getList(ctx.request.body))
   },
   createProduct: async ctx =>
     ctx.created(await productService.create(ctx.request.body)),
-  updateProduct: async ctx =>
-    ctx.ok(await productService.update(ctx.params.id, ctx.request.body)),
-  removeProducts: async ctx =>
-    ctx.noContent(await productService.remove(ctx.params.id))
+
 })
 
 

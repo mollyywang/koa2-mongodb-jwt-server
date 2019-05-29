@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    ports:
+        - 27017:27017
+
+  koaaapp:
+    image: "koaapp:${DOCKER_TAG:-latest}"
+    container_name: "koaapp"
+    build:
+      context: .
+    ports:
+      - "5001:5001"
+    links:
+      - mongo
+    volumes:
+     - ./src:/app/src

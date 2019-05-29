@@ -1,6 +1,6 @@
 
 import mongoose from 'mongoose'
-const dbConn = 'mongodb://localhost/pricer'
+const dbConn = 'mongodb://mongo:27017/pricer'
 
 /**
  * mongoose connect database 连接数据库

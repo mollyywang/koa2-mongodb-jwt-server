@@ -6,7 +6,7 @@ import Product from '../models/product.js';
 
 export default function createProductStore(logger) {
   return {
-    async getlist(name, index, counts) {
+    async getList(name, index, counts) {
       const productData = await Product.find({}).skip(index).limit(counts)
       const allNums = await Product.find({}).count()
       return {

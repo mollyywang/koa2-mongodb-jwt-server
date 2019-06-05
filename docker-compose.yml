@@ -12,8 +12,11 @@ services:
     container_name: "koaapp"
     build:
       context: .
+    environment:
+      NODE_ENV: production
+      PORT: 80
     ports:
-      - "5001:5001"
+      - "5001:80"
     links:
       - mongo
     volumes:

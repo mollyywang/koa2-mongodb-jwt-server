@@ -1,13 +1,17 @@
 FROM node:latest
 
-
-ADD ./package.json /app/package.json
 WORKDIR /app
+COPY package.json yarn.lock ./
 
-RUN npm install 
+RUN yarn install
 
-ADD ./env.yaml /app/env.yaml
-ADD ./src /app/src
-WORKDIR /app
+COPY . .
 
-ENTRYPOINT npm run dev
+# Default NODE_ENV, will be overwritten by envrionment in docker-compose.yml
+ENV NODE_ENV production
+ENV LISTEN_PORT 80
+EXPOSE ${LISTEN_PORT}
+
+RUN yarn build
+
+ENTRYPOINT ["yarn", "start"]

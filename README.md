@@ -107,3 +107,10 @@ Download the APT testing tools postman first.
 There is a shopping web application developped with reactjs, redux-thunk, axios and antd. You can download it and run with this server.
 这里还有一个使用reactjs,redux-thunk,axios 和 antd 等的单页网页应用，可以下载下来测试后台。
 https://github.com/SoloistWang/reactjs-redux-antd
+
+## 7.docker
+write dockerfile && docker-compose.yml && docker-compose.dev.yml
+
+ ```bash
+ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+ ```

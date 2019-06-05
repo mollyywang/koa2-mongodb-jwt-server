@@ -4,25 +4,25 @@ describe('stars API', () => {
   it('can get starlist', async () => {
     const api = await apiHelper()
     const user = await api.login({
-      username:'wangwang',
-      password:'2222'
+      username: 'wangwang',
+      password: '2222'
     })
     const config = {
-      "headers":{"Authorization" : `Bearer ${user.data.token}`}
+      "headers": { "Authorization": `Bearer ${user.data.token}` }
     }
-    const response = await api.findStars({},config)
+    const response = await api.findStars(config)
     expect(response.code).toEqual(0)
-    expect(response.data.starsData).toBe(Array)
+    expect(Array.isArray(response.data.starsData)).toBe(true)
   })
 
   it('', async () => {
     const api = await apiHelper()
     const user = await api.login({
-      username:'wangwang',
-      password:'2222'
+      username: 'wangwang',
+      password: '2222'
     })
     const config = {
-      "headers":{"Authorization" : `Bearer ${user.data.token}`}
+      "headers": { "Authorization": `Bearer ${user.data.token}` }
     }
     const product = await api.createProduct({
       "name": "Baby Wipes Testing add star",
@@ -33,10 +33,10 @@ describe('stars API', () => {
     })
 
     const response = await api.addStar({
-        "productId": product.data
-    },config)
-    
-    expect(response.data).toBe(String)
+      "productId": product.data
+    }, config)
+
+    expect(typeof response.data).toBe('string')
     expect(response.code).toEqual(0)
   })
 

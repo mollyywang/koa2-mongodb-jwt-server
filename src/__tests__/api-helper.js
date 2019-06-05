@@ -22,14 +22,14 @@ export async function apiHelper() {
             client.get(`/public/products/get/${id}`).then(assertStatus(200)),
         getList: data => client.post(`/public/products/getlist`, data).then(assertStatus(200)),
         createProduct: data => client.post('/public/products/create', data).then(assertStatus(200)),
-        findStars: (params, config) => {
-            return client.get(`/star/starlist`, params, config).then(assertStatus(200))
+        findStars: (headers) => {
+            return client.get(`/star/starlist`, headers).then(assertStatus(200))
         },
         addStar: (data, config) => {
-            client.post(`/star/add`, data, config).then(assertStatus(200))
+            return client.post(`/star/add`, data, config).then(assertStatus(200))
         },
-        removeStar: (params, config) => {
-            client.get(`/star/remove`, params, config).then(assertStatus(200))
+        removeStar: (headers) => {
+            return client.get(`/star/remove`, headers).then(assertStatus(200))
         },
     }
 }
@@ -44,12 +44,12 @@ export function assertStatus(status) {
     return async function statusAsserter(response) {
         if (response.status !== status) {
             throw new Error(
-                `Expected ${status} but got ${resp.status}: ${resp.request.method} ${
-                resp.request.path
+                `Expected ${status} but got ${response.status}: ${response.request.method} ${
+                response.request.path
                 }`
             )
         }
-        return resp.data
+        return response.data
     }
 }
 

@@ -13,7 +13,7 @@ const api = productService => ({
     ctx.ok(await productService.getList(ctx.request.body))
   },
   createProduct: async ctx =>
-    ctx.created(await productService.create(ctx.request.body)),
+    ctx.ok(await productService.create(ctx.request.body)),
 
 })
 

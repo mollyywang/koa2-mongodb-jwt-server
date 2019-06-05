@@ -10,7 +10,7 @@ import { createController } from 'awilix-koa'
 const api = userService => ({
   login: async ctx => ctx.ok(await userService.login(ctx.request.body)),
   register: async ctx =>
-    ctx.created(await userService.register(ctx.request.body)),
+    ctx.ok(await userService.register(ctx.request.body)),
 })
 
 export default createController(api)

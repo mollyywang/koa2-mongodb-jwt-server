@@ -25,7 +25,7 @@ export default function createProductStore(logger) {
         ...data,
       })
       const result = await product.save()
-      logger.debug(`Created new product`, result)
+      // logger.debug(`Created new product`, result)
       return result._id
     }
   }

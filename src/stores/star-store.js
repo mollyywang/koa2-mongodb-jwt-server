@@ -38,7 +38,7 @@ export default function createStarStore(logger) {
         productId: productId
       })
       const result = await star.save()
-      logger.debug(`Created new star`, result)
+      // logger.debug(`Created new star`, result)
       return result._id
     },
 
@@ -47,7 +47,7 @@ export default function createStarStore(logger) {
         userId: ObjectId(userId),
         productId: ObjectId(productId)
       }).remove()
-      logger.debug(`Remove star`, result)
+      // logger.debug(`Remove star`, result)
       return result.deletedCount
     }
   }

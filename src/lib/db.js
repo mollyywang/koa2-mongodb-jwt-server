@@ -8,8 +8,6 @@ import { env } from './env'
  */
 
 export function dbconnect() {
-    console.log(env)
-
     mongoose.Promise = require('bluebird')
     mongoose.connect(env.DBCONN)
     const db = mongoose.connection

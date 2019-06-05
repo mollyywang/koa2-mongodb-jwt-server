@@ -23,7 +23,7 @@ describe('products API', () => {
       "urllink": "https://shop.coles.com.au/a/a-national/product/huggies--baby-wipes-unscented-tub",
       "from": "coles"
     })
-    const product = await api.getTodo(newProduct.data)
+    const product = await api.getProduct(newProduct.data)
     expect(product.code).toEqual(0)
     expect(product.data[0]._id).toEqual(newProduct.data)
   })
@@ -36,7 +36,7 @@ describe('products API', () => {
       "counts": 16
     })
     expect(response.code).toEqual(0)
-    expect(response.data.productData).toBe(Array)
+    expect(Array.isArray(response.data.productData)).toBe(true)
   })
 
 

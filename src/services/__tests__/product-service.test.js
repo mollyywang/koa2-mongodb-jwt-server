@@ -1,21 +1,23 @@
 import { throws } from 'smid'
+import { logger } from '../../lib/logger'
+
 import ProductService from '../product-service'
 
 // This test only verify invariants, not interaction with dependencies.
 // That is tested with integration tests.
 describe('ProductService', () => {
-    describe('getlist', () => {
+    describe('getList', () => {
         it('can find products', async () => {
             const { service, products } = setup()
-            expect(await service.getlist().data).toEqual(products)
+            expect((await service.getList({name: 'xx', index: 0, counts: 15})).data).toEqual(products)
         })
     })
 
     describe('get', () => {
         it('throws when not found', async () => {
             const { service, products } = setup()
-            expect((await throws(service.get('nonexistent'))).message).toMatch(/not found/)
-            expect(await service.get('1').data).toEqual(products[0])
+            expect((await service.get('nonexistent')).code).toBe(1)
+            expect((await service.get('1')).data).toEqual(products[0])
         })
     })
 
@@ -41,9 +43,9 @@ describe('ProductService', () => {
                 urllink: 'https://www.woolworths.com.au/shop/productdetails/746640/water-wipes-baby-wipes',
                 from: 'ww'
             })
-            expect(res.data).toEqual({
-                name: 'Water Wipes Baby Wipes 60 pack'
-            })
+            expect(res.data.name).toEqual(
+                'Water Wipes Baby Wipes 60 pack'
+            )
         })
     })
 })
@@ -69,11 +71,10 @@ function setup() {
     ]
     // Mock store
     const store = {
-      getlist: jest.fn(async () => [...products]),
-      get: jest.fn(async id => products.find(x => x.id === id)),
-      create: jest.fn(async data => ({ ...data })),
+        getList: jest.fn(async () => [...products]),
+        get: jest.fn(async id => products.find(x => x.id === id)),
+        create: jest.fn(async data => ({ ...data })),
     }
-    return { service: new ProductService(store), store, products }
-  }
+    return { service: new ProductService(store, logger), store, products }
+}
 
-  

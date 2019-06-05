@@ -24,7 +24,7 @@ export default class ProductService {
   }
 
   async getList(body) {
-    this.logger.debug(body);
+    // this.logger.debug(body);
     const res = {
       data: {},
       code: 0

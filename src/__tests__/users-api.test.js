@@ -7,7 +7,7 @@ describe('users API', () => {
         username:'wangwang',
         password:'2222'
     })
-    expect(user.code).toEqual(1)
+    expect(typeof user.code).toBe('number')
     expect(user.data).toBeDefined()
   })
 

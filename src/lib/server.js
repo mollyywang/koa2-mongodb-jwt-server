@@ -13,7 +13,6 @@ import { dbconnect } from './db'
 import { env } from './env'
 
 import { errorHandler } from '../middleware/error-handler'
-import { notFoundHandler } from '../middleware/not-found'
 
 /**
  * Creates a new Koa application 创建应用并返回
@@ -71,8 +70,6 @@ export async function createServer() {
     .use(errorHandler)
     // Compress all responses.
     .use(compress())
-    // .use(notFoundHandler)
-
     // Adds ctx.ok(), ctx.notFound(), etc..
     .use(respond())
     // Parses request bodies.

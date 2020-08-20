@@ -20,7 +20,7 @@
     "awilix": "^4.0.1",
     "awilix-koa": "^3.0.0",
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bristol": "^0.4.0",
     "fejl": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
